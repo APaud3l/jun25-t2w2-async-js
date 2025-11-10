@@ -41,15 +41,49 @@ const pizzaPromise = (boolValue) => {
     return pizzaPrep;
 };
 
-pizzaPromise(true)
-.then((message) => {
-    console.log("Yayy!" + message);
-})
-.catch((error) => {
-    console.log("Oops..." + error);
-})
-.finally(() => {
-    console.log("Promise settled.");
-});
+pizzaPromise(false)
+    .then((message) => {
+        console.log("Yayy!" + message);
+    })
+    .catch((error) => {
+        console.log("Oops..." + error);
+    })
+    .finally(() => {
+        console.log("Promise settled.");
+    });
 
 console.log("I am not effected!!");
+
+// Function written using promise and .then
+function getLiveJoke() {
+    fetch('https://official-joke-api.appspot.com/random_joke')
+        .then((response) => response.json())
+        .then((data) => {
+            console.log("Joke: ", data.setup);
+            console.log("Punchline: ", data.punchline);
+        })
+        .catch((error) => {
+            console.error("Error fetching joke.", error);
+        });
+
+}
+
+// setInterval(getLiveJoke, 5000);
+
+// Function written using async/await
+async function getJoke() {
+    try{
+    // request from the api
+    response = await fetch('https://official-joke-api.appspot.com/random_joke')
+    // convert the response to JSON
+    data = await response.json();
+    // print it in console
+    console.log("Joke: ", data.setup);
+    console.log("Punchline: ", data.punchline);
+    } catch (error) {
+        console.error("Error: ", error);
+    }
+}
+
+getJoke();
+console.log("I am running!!!");

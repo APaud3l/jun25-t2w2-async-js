@@ -5,3 +5,5 @@ Everything about learning Async JS
 - Event Loops
 - setTimeout
 - Callback
+- AJAX (Asynchronous JS and XML)
+- async/await
